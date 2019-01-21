@@ -1,0 +1,37 @@
+{
+  "name": "lamoda/payture-inpay-client",
+  "license": "MIT",
+  "description": "Client for Payture InPay API",
+  "keywords": ["payture", "payment", "api", "client"],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Lamoda developers",
+      "homepage": "https://tech.lamoda.ru/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Lamoda\\Payture\\InPayClient\\": "./src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Lamoda\\Payture\\InPayClient\\Tests\\": "./tests/"
+    }
+  },
+  "require": {
+    "php": "^7.1",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^6.3",
+    "psr/log": "^1.1",
+    "paillechat/php-enum": "^1.2"
+  },
+  "require-dev": {
+    "ext-dom": "*",
+    "ext-json": "*",
+    "phpunit/phpunit": "^7.5"
+  }
+}
