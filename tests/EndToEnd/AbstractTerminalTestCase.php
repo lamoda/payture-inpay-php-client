@@ -36,7 +36,7 @@ abstract class AbstractTerminalTestCase extends TestCase
     /**
      * Successful payment without 3DS and with optional CVV.
      *
-     * @link https://payture.com/api#test-cards_
+     * @see https://payture.com/api#test-cards_
      *
      * @return Card
      */

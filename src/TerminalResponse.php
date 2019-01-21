@@ -7,7 +7,7 @@ final class TerminalResponse
     /**
      * Payture error codes.
      *
-     * @link https://payture.com/api#error-codes_
+     * @see https://payture.com/api#error-codes_
      */
     public const ERROR_NONE = 'NONE';
     public const ERROR_ORDER_TIME_OUT = 'ORDER_TIME_OUT';
@@ -69,6 +69,7 @@ final class TerminalResponse
     private $sessionId = '';
 
     /** Error code.
+     *
      * @var string
      */
     private $errorCode = '';

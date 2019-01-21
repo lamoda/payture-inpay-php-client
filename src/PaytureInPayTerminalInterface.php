@@ -7,7 +7,7 @@ use Lamoda\Payture\InPayClient\Exception\TransportException;
 interface PaytureInPayTerminalInterface
 {
     /**
-     * @link https://payture.com/api#inpay_paystatus_
+     * @see https://payture.com/api#inpay_paystatus_
      *
      * @param string $orderId Payment ID in Merchant system
      *
@@ -18,7 +18,7 @@ interface PaytureInPayTerminalInterface
     public function payStatus(string $orderId): TerminalResponse;
 
     /**
-     * @link https://payture.com/api#inpay_init_
+     * @see https://payture.com/api#inpay_init_
      *
      * @param SessionType $sessionType
      * @param string $orderId Payment ID in Merchant system
@@ -52,7 +52,7 @@ interface PaytureInPayTerminalInterface
     public function createPaymentUrl(string $sessionId): string;
 
     /**
-     * @link https://payture.com/api#inpay_unblock_
+     * @see https://payture.com/api#inpay_unblock_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
@@ -64,7 +64,7 @@ interface PaytureInPayTerminalInterface
     public function unblock(string $orderId, int $amount): TerminalResponse;
 
     /**
-     * @link https://payture.com/api#inpay_charge_
+     * @see https://payture.com/api#inpay_charge_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Charging amount in kopecks
@@ -78,7 +78,7 @@ interface PaytureInPayTerminalInterface
     /**
      * The request is used both in one-step and two-step payment schemes.
      *
-     * @link https://payture.com/api#inpay_refund_
+     * @see https://payture.com/api#inpay_refund_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned

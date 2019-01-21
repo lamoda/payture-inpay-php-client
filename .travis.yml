@@ -1,0 +1,19 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+  - nightly
+
+sudo: false
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - composer install
+
+script:
+  - vendor/bin/phpunit -c phpunit.xml
+  - vendor/bin/php-cs-fixer fix --dry-run --diff

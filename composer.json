@@ -2,7 +2,12 @@
   "name": "lamoda/payture-inpay-client",
   "license": "MIT",
   "description": "Client for Payture InPay API",
-  "keywords": ["payture", "payment", "api", "client"],
+  "keywords": [
+    "payture",
+    "payment",
+    "api",
+    "client"
+  ],
   "type": "library",
   "authors": [
     {
@@ -32,6 +37,7 @@
   "require-dev": {
     "ext-dom": "*",
     "ext-json": "*",
-    "phpunit/phpunit": "^7.5"
+    "phpunit/phpunit": "^7.5",
+    "friendsofphp/php-cs-fixer": "^2.14"
   }
 }

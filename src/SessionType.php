@@ -7,7 +7,7 @@ use Paillechat\Enum\Enum;
 /**
  * Enum which determine session types in payture gateway.
  *
- * @link https://payture.com/api#inpay_init_
+ * @see https://payture.com/api#inpay_init_
  *
  * @method static static PAY()
  * @method static static BLOCK()

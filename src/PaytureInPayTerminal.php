@@ -35,7 +35,7 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     }
 
     /**
-     * @link https://payture.com/api#inpay_init_
+     * @see https://payture.com/api#inpay_init_
      *
      * @param SessionType $sessionType
      * @param string $orderId Payment ID in Merchant system
@@ -86,7 +86,7 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     }
 
     /**
-     * @link https://payture.com/api#inpay_charge_
+     * @see https://payture.com/api#inpay_charge_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Charging amount in kopecks
@@ -110,7 +110,7 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     /**
      * Perform partial or full amount unblock for Block session type.
      *
-     * @link https://payture.com/api#inpay_unblock_
+     * @see https://payture.com/api#inpay_unblock_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
@@ -134,7 +134,7 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     /**
      * Create new deal to refund given Amount from the OrderId.
      *
-     * @link https://payture.com/api#inpay_refund_
+     * @see https://payture.com/api#inpay_refund_
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
@@ -158,7 +158,7 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     /**
      * Get status of the last deal for the OrderId.
      *
-     * @link https://payture.com/api#inpay_paystatus_
+     * @see https://payture.com/api#inpay_paystatus_
      *
      * @param string $orderId Payment ID in Merchant system
      *
