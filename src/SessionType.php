@@ -11,8 +11,6 @@ use Paillechat\Enum\Enum;
  *
  * @method static static PAY()
  * @method static static BLOCK()
- *
- * @internal
  */
 final class SessionType extends Enum
 {
