@@ -3,6 +3,12 @@
 Simple php client for [Payture InPay API](https://payture.com/api#inpay_). This API allows payment transaction processing 
 while managing user sensitive payment data (i.e cards) on the Payture side
 
+[![Build Status](https://travis-ci.org/lamoda/payture-inpay-php-client.svg?branch=master)](https://travis-ci.org/lamoda/payture-inpay-php-client)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/badges/build.png?b=master)](https://scrutinizer-ci.com/g/lamoda/payture-inpay-php-client/build-status/master)
+
+
 ## Installation
 
 ```bash
