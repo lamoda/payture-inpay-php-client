@@ -27,6 +27,10 @@ final class TerminalResponseTest extends TestCase
 
         $response->setErrorCode(TerminalResponse::ERROR_ILLEGAL_ORDER_STATE);
         self::assertEquals(TerminalResponse::ERROR_ILLEGAL_ORDER_STATE, $response->getErrorCode());
+
+        self::assertEquals(null, $response->getRrn());
+        $response->setRrn('003770024290');
+        self::assertEquals('003770024290', $response->getRrn());
     }
 
     public function testStateAccessors(): void
