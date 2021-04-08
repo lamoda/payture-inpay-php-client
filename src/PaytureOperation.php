@@ -13,6 +13,7 @@ use Paillechat\Enum\Enum;
  * @method static static UNBLOCK()
  * @method static static REFUND()
  * @method static static PAY_STATUS()
+ * @method static static GET_STATE()
  *
  * @internal
  */
@@ -23,7 +24,12 @@ final class PaytureOperation extends Enum
     public const CHARGE = 'Charge';
     public const UNBLOCK = 'Unblock';
     public const REFUND = 'Refund';
+    /**
+     * @deprecated
+     * @see PaytureOperation::GET_STATE
+     */
     public const PAY_STATUS = 'PayStatus';
+    public const GET_STATE = 'GetState';
 
     public function __toString(): string
     {

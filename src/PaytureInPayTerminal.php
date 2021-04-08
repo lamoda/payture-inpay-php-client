@@ -156,7 +156,8 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     }
 
     /**
-     * Get status of the last deal for the OrderId.
+     * @deprecated
+     * @see PaytureInPayTerminalInterface::getState()
      *
      * @see https://payture.com/api#inpay_paystatus_
      *
@@ -174,6 +175,27 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
         ];
 
         return $this->sendRequest(PaytureOperation::PAY_STATUS(), $data);
+    }
+
+    /**
+     * Returns actual order state
+     *
+     * @see https://payture.com/api/#inpay_getstate_
+     *
+     * @param string $orderId Payment ID in Merchant system
+     *
+     * @return TerminalResponse
+     *
+     * @throws TransportException
+     */
+    public function getState(string $orderId): TerminalResponse
+    {
+        $data = [
+            'Key' => $this->config->getKey(),
+            'OrderId' => $orderId,
+        ];
+
+        return $this->sendRequest(PaytureOperation::GET_STATE(), $data);
     }
 
     public function createPaymentUrl(string $sessionId): string

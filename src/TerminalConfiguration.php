@@ -37,6 +37,8 @@ final class TerminalConfiguration
                 return 'Refund';
             case (string) PaytureOperation::PAY_STATUS():
                 return 'PayStatus';
+            case (string) PaytureOperation::GET_STATE():
+                return 'GetState';
         }
 
         // @codeCoverageIgnoreStart

@@ -49,6 +49,10 @@ final class TerminalResponseBuilder
             $result->setErrorCode($attributes['ErrCode']);
         }
 
+        if (isset($attributes['RRN'])) {
+            $result->setRrn($attributes['RRN']);
+        }
+
         return $result;
     }
 
@@ -96,6 +100,8 @@ final class TerminalResponseBuilder
                 return 'Refund';
             case (string) PaytureOperation::PAY_STATUS():
                 return 'PayStatus';
+            case (string) PaytureOperation::GET_STATE():
+                return 'GetState';
         }
 
         //@codeCoverageIgnoreStart

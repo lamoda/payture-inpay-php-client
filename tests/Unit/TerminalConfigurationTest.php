@@ -127,6 +127,11 @@ final class TerminalConfigurationTest extends TestCase
                 ['Key' => 'MerchantKey', 'Data' => 'SomeData'],
                 'https://nowhere.payture.com/apim/PayStatus?Key=MerchantKey&Data=SomeData',
             ],
+            [
+                PaytureOperation::GET_STATE(),
+                ['Key' => 'MerchantKey', 'Data' => 'SomeData'],
+                'https://nowhere.payture.com/apim/GetState?Key=MerchantKey&Data=SomeData',
+            ],
         ];
     }
 }

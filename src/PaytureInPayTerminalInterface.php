@@ -7,6 +7,18 @@ use Lamoda\Payture\InPayClient\Exception\TransportException;
 interface PaytureInPayTerminalInterface
 {
     /**
+     * @see https://payture.com/api/#inpay_getstate_
+     *
+     * @param string $orderId Payment ID in Merchant system
+     *
+     * @return TerminalResponse
+     */
+    public function getState(string $orderId): TerminalResponse;
+
+    /**
+     * @deprecated
+     * @see PaytureInPayTerminalInterface::getState()
+     *
      * @see https://payture.com/api#inpay_paystatus_
      *
      * @param string $orderId Payment ID in Merchant system

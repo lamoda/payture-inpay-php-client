@@ -152,6 +152,30 @@ final class PaytureInPayTerminalTest extends TestCase
         self::assertTrue($response->isChargedState());
     }
 
+    public function testGetState(): void
+    {
+        $rrn = '003770024290';
+        $orderId = 'Order-123';
+        $this->transport->expects($this->once())
+            ->method('request')
+            ->with(
+                PaytureOperation::GET_STATE(),
+                'apim',
+                [
+                    'Key' => 'MerchantKey',
+                    'OrderId' => $orderId,
+                ]
+            )->willReturn('<GetState Success="True" OrderId="' . $orderId . '" State="Refunded"
+                Forwarded="False" MerchantContract="Merchant" Amount="12461" RRN="' . $rrn . '"/>');
+
+        $response = $this->terminal->getState($orderId);
+
+        self::assertTrue($response->isSuccess());
+        self::assertTrue($response->isRefundedState());
+        self::assertEquals($rrn, $response->getRrn());
+        self::assertEquals($orderId, $response->getOrderId());
+    }
+
     public function testCreatingPaymentUrl(): void
     {
         self::assertEquals(

@@ -25,23 +25,23 @@ final class TwoStepPaymentTerminalTest extends AbstractTerminalTestCase
         );
         $sessionId = $response->getSessionId();
 
-        $response = $this->getTerminal()->payStatus($orderId);
+        $response = $this->getTerminal()->getState($orderId);
         self::assertTrue($response->isSuccess());
 
         $url = $this->getTerminal()->createPaymentUrl($sessionId);
 
         $this->pay($url, $orderId, self::ORDER_PRICE);
-        $response = $this->getTerminal()->payStatus($orderId);
+        $response = $this->getTerminal()->getState($orderId);
         self::assertTrue($response->isAuthorizedState());
 
         $response = $this->getTerminal()->charge($orderId, self::ORDER_PRICE);
         self::assertTrue($response->isSuccess());
-        $response = $this->getTerminal()->payStatus($orderId);
+        $response = $this->getTerminal()->getState($orderId);
         self::assertTrue($response->isChargedState());
 
         $response = $this->getTerminal()->refund($orderId, self::ORDER_PRICE);
         self::assertTrue($response->isSuccess());
-        $response = $this->getTerminal()->payStatus($orderId);
+        $response = $this->getTerminal()->getState($orderId);
         self::assertTrue($response->isRefundedState());
     }
 }
