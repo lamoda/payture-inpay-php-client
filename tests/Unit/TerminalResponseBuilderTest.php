@@ -15,10 +15,6 @@ final class TerminalResponseBuilderTest extends TestCase
     /**
      * @dataProvider getValidResponseExamples
      *
-     * @param string $xml
-     * @param PaytureOperation $operation
-     * @param bool $success
-     *
      * @throws \Lamoda\Payture\InPayClient\Exception\InvalidResponseException
      */
     public function testBuilderParsesXmlStringIntoResponse(
@@ -73,14 +69,18 @@ final class TerminalResponseBuilderTest extends TestCase
                 PaytureOperation::PAY_STATUS(),
                 true,
             ],
+            'GetState' => [
+                '<GetState Success="True" OrderId="nw9z5rl8hkhhpfbb4ual7w" Amount="2000" State="Charged"
+                    RRN="003770024290"/>',
+                PaytureOperation::GET_STATE(),
+                true,
+            ],
         ];
     }
 
     /**
      * @dataProvider getPopulatedFieldExamples
      *
-     * @param string $xml
-     * @param string $accessMethod
      * @param mixed $expectedValue
      *
      * @throws \Lamoda\Payture\InPayClient\Exception\InvalidResponseException
@@ -118,6 +118,11 @@ final class TerminalResponseBuilderTest extends TestCase
                 '<Charge Success="True" NewAmount="10000" />',
                 'getAmount',
                 10000,
+            ],
+            'RRN' => [
+                '<Charge Success="True" RRN="003770024290" />',
+                'getRrn',
+                '003770024290',
             ],
         ];
     }

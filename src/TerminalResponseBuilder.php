@@ -10,11 +10,6 @@ use Lamoda\Payture\InPayClient\Exception\InvalidResponseException;
 final class TerminalResponseBuilder
 {
     /**
-     * @param string $transportResponse
-     * @param PaytureOperation $operation
-     *
-     * @return TerminalResponse
-     *
      * @throws InvalidResponseException
      */
     public static function parseTransportResponse(
@@ -49,15 +44,14 @@ final class TerminalResponseBuilder
             $result->setErrorCode($attributes['ErrCode']);
         }
 
+        if (isset($attributes['RRN'])) {
+            $result->setRrn($attributes['RRN']);
+        }
+
         return $result;
     }
 
     /**
-     * @param string $xml
-     * @param string $operation
-     *
-     * @return array
-     *
      * @throws InvalidResponseException
      */
     private static function parseAttributesFromXmlResponse(string $xml, string $operation): array
@@ -96,6 +90,8 @@ final class TerminalResponseBuilder
                 return 'Refund';
             case (string) PaytureOperation::PAY_STATUS():
                 return 'PayStatus';
+            case (string) PaytureOperation::GET_STATE():
+                return 'GetState';
         }
 
         //@codeCoverageIgnoreStart

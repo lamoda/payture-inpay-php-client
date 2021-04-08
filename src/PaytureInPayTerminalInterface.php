@@ -7,11 +7,18 @@ use Lamoda\Payture\InPayClient\Exception\TransportException;
 interface PaytureInPayTerminalInterface
 {
     /**
+     * @see https://payture.com/api/#inpay_getstate_
+     *
+     * @param string $orderId Payment ID in Merchant system
+     */
+    public function getState(string $orderId): TerminalResponse;
+
+    /**
+     * @deprecated
+     * @see PaytureInPayTerminalInterface::getState()
      * @see https://payture.com/api#inpay_paystatus_
      *
      * @param string $orderId Payment ID in Merchant system
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -20,16 +27,12 @@ interface PaytureInPayTerminalInterface
     /**
      * @see https://payture.com/api#inpay_init_
      *
-     * @param SessionType $sessionType
      * @param string $orderId Payment ID in Merchant system
-     * @param string $product
      * @param int $amount Payment amount
      * @param string $clientIp User IP address
      * @param string $url back URL
      * @param string $templateTag Used template tag. If empty string - no template tag will be passed
      * @param array $extra Payture none requirement extra fields
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -44,11 +47,6 @@ interface PaytureInPayTerminalInterface
         array $extra = []
     ): TerminalResponse;
 
-    /**
-     * @param string $sessionId
-     *
-     * @return string
-     */
     public function createPaymentUrl(string $sessionId): string;
 
     /**
@@ -56,8 +54,6 @@ interface PaytureInPayTerminalInterface
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -68,8 +64,6 @@ interface PaytureInPayTerminalInterface
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Charging amount in kopecks
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -82,8 +76,6 @@ interface PaytureInPayTerminalInterface
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */

@@ -72,8 +72,6 @@ final class GuzzleHttpOptionsBag
 
     /**
      * Assert that client options are correct.
-     *
-     * @param array $options
      */
     private function assertOptions(array $options): void
     {
@@ -86,10 +84,6 @@ final class GuzzleHttpOptionsBag
 
     /**
      * Assert that fields include only valid.
-     *
-     * @param array $fields
-     * @param array $validFields
-     * @param string $message
      */
     private function assertValidFields(array $fields, array $validFields, string $message): void
     {
@@ -102,8 +96,6 @@ final class GuzzleHttpOptionsBag
 
     /**
      * Assert that options per operations have correct options and operations.
-     *
-     * @param array $optionsPerOperation
      */
     private function assertOptionsPerOperation(array $optionsPerOperation): void
     {

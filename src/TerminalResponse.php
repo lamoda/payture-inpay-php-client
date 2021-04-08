@@ -68,6 +68,13 @@ final class TerminalResponse
      */
     private $sessionId = '';
 
+    /**
+     * Unique transaction number assigned by the acquiring bank.
+     *
+     * @var string|null
+     */
+    private $rrn;
+
     /** Error code.
      *
      * @var string
@@ -84,9 +91,6 @@ final class TerminalResponse
         $this->orderId = $orderId;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return $this->success;
@@ -105,6 +109,11 @@ final class TerminalResponse
     public function setAmount(int $amount): void
     {
         $this->amount = $amount;
+    }
+
+    public function getRrn(): ?string
+    {
+        return $this->rrn;
     }
 
     public function getSessionId(): string
@@ -143,6 +152,11 @@ final class TerminalResponse
     public function setState(string $state): void
     {
         $this->state = $state;
+    }
+
+    public function setRrn(string $rrn): void
+    {
+        $this->rrn = $rrn;
     }
 
     public function isNewState(): bool

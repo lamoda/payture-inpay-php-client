@@ -28,10 +28,7 @@ final class GuzzleHttpPaytureTransport implements TransportInterface
     private $optionsBag;
 
     /**
-     * @param ClientInterface $client
-     * @param TerminalConfiguration $config
      * @param GuzzleHttpOptionsBag $optionsBag
-     * @param LoggerInterface|null $logger
      */
     public function __construct(
         ClientInterface $client,

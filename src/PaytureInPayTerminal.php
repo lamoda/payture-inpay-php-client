@@ -37,16 +37,12 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     /**
      * @see https://payture.com/api#inpay_init_
      *
-     * @param SessionType $sessionType
      * @param string $orderId Payment ID in Merchant system
-     * @param string $product
      * @param int $amount Payment amount
      * @param string $clientIp User IP address
      * @param string $url back URL
      * @param string $templateTag Used template tag. If empty string - no template tag will be passed
      * @param array $extra Payture none requirement extra fields
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -91,8 +87,6 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Charging amount in kopecks
      *
-     * @return TerminalResponse
-     *
      * @throws TransportException
      */
     public function charge(string $orderId, int $amount): TerminalResponse
@@ -114,8 +108,6 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
      *
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -139,8 +131,6 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
      * @param string $orderId Payment ID in Merchant system
      * @param int $amount Amount in kopecks that is to be returned
      *
-     * @return TerminalResponse
-     *
      * @throws TransportException
      */
     public function refund(string $orderId, int $amount): TerminalResponse
@@ -156,13 +146,11 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     }
 
     /**
-     * Get status of the last deal for the OrderId.
-     *
+     * @deprecated
+     * @see PaytureInPayTerminalInterface::getState()
      * @see https://payture.com/api#inpay_paystatus_
      *
      * @param string $orderId Payment ID in Merchant system
-     *
-     * @return TerminalResponse
      *
      * @throws TransportException
      */
@@ -176,6 +164,25 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
         return $this->sendRequest(PaytureOperation::PAY_STATUS(), $data);
     }
 
+    /**
+     * Returns actual order state.
+     *
+     * @see https://payture.com/api/#inpay_getstate_
+     *
+     * @param string $orderId Payment ID in Merchant system
+     *
+     * @throws TransportException
+     */
+    public function getState(string $orderId): TerminalResponse
+    {
+        $data = [
+            'Key' => $this->config->getKey(),
+            'OrderId' => $orderId,
+        ];
+
+        return $this->sendRequest(PaytureOperation::GET_STATE(), $data);
+    }
+
     public function createPaymentUrl(string $sessionId): string
     {
         $data = [
@@ -186,11 +193,6 @@ final class PaytureInPayTerminal implements PaytureInPayTerminalInterface
     }
 
     /**
-     * @param PaytureOperation $operation
-     * @param array $parameters
-     *
-     * @return TerminalResponse
-     *
      * @throws TransportException
      */
     private function sendRequest(PaytureOperation $operation, array $parameters): TerminalResponse

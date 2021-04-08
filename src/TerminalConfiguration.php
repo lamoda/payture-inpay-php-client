@@ -37,6 +37,8 @@ final class TerminalConfiguration
                 return 'Refund';
             case (string) PaytureOperation::PAY_STATUS():
                 return 'PayStatus';
+            case (string) PaytureOperation::GET_STATE():
+                return 'GetState';
         }
 
         // @codeCoverageIgnoreStart
@@ -59,24 +61,12 @@ final class TerminalConfiguration
         return $this->password;
     }
 
-    /**
-     * @param PaytureOperation $operation
-     * @param string $interface
-     * @param array $parameters
-     *
-     * @return string
-     */
     public function buildOperationUrl(PaytureOperation $operation, string $interface, array $parameters): string
     {
         return $this->getUrl() . $interface .
             '/' . self::mapOperationToPath($operation) . '?' . http_build_query($parameters);
     }
 
-    /**
-     * @param string $url
-     *
-     * @return string
-     */
     public function normalizeUrl(string $url): string
     {
         return rtrim($url, '/') . '/';
