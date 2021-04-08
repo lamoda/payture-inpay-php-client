@@ -23,9 +23,6 @@ final class PaytureInPayTerminalTest extends TestCase
     /**
      * @dataProvider getInitSessionTypes
      *
-     * @param SessionType $type
-     * @param string $data
-     *
      * @throws \Lamoda\Payture\InPayClient\Exception\TransportException
      */
     public function testPaymentInit(SessionType $type, string $data): void
