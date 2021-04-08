@@ -69,7 +69,7 @@ final class TerminalResponse
     private $sessionId = '';
 
     /**
-     * Unique transaction number assigned by the acquiring bank
+     * Unique transaction number assigned by the acquiring bank.
      *
      * @var string|null
      */
@@ -91,9 +91,6 @@ final class TerminalResponse
         $this->orderId = $orderId;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return $this->success;

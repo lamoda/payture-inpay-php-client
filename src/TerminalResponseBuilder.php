@@ -10,11 +10,6 @@ use Lamoda\Payture\InPayClient\Exception\InvalidResponseException;
 final class TerminalResponseBuilder
 {
     /**
-     * @param string $transportResponse
-     * @param PaytureOperation $operation
-     *
-     * @return TerminalResponse
-     *
      * @throws InvalidResponseException
      */
     public static function parseTransportResponse(
@@ -57,11 +52,6 @@ final class TerminalResponseBuilder
     }
 
     /**
-     * @param string $xml
-     * @param string $operation
-     *
-     * @return array
-     *
      * @throws InvalidResponseException
      */
     private static function parseAttributesFromXmlResponse(string $xml, string $operation): array

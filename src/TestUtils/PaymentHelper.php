@@ -42,7 +42,6 @@ final class PaymentHelper extends Assert
     }
 
     /**
-     * @param ResponseInterface $response
      * @param string[] $names
      *
      * @return string[]
@@ -68,12 +67,6 @@ final class PaymentHelper extends Assert
     }
 
     /**
-     * @param string $orderNr
-     * @param int $amount
-     * @param string $paymentUrl
-     * @param Card $card
-     * @param string $sandboxUrl
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function pay(
@@ -98,10 +91,6 @@ final class PaymentHelper extends Assert
     }
 
     /**
-     * @param string $paymentUrl
-     * @param string $sandboxUrl
-     * @param array $data
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function sendPayment(string $paymentUrl, string $sandboxUrl, array $data): void
