@@ -24,6 +24,10 @@ final class TerminalConfigurationTest extends TestCase
 
     /**
      * @dataProvider notValidConfigVariants
+     *
+     * @param array $options
+     * @param string $exception
+     * @param string $message
      */
     public function testNotValidConfig(array $options, string $exception, string $message): void
     {
@@ -79,6 +83,10 @@ final class TerminalConfigurationTest extends TestCase
 
     /**
      * @dataProvider getOperationUrlProviders
+     *
+     * @param PaytureOperation $operation
+     * @param array $parameters
+     * @param string $expectedUrl
      */
     public function testBuildingOperationUrl(PaytureOperation $operation, array $parameters, string $expectedUrl): void
     {

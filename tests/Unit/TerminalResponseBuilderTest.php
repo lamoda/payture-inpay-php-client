@@ -15,6 +15,10 @@ final class TerminalResponseBuilderTest extends TestCase
     /**
      * @dataProvider getValidResponseExamples
      *
+     * @param string $xml
+     * @param PaytureOperation $operation
+     * @param bool $success
+     *
      * @throws \Lamoda\Payture\InPayClient\Exception\InvalidResponseException
      */
     public function testBuilderParsesXmlStringIntoResponse(
@@ -81,6 +85,8 @@ final class TerminalResponseBuilderTest extends TestCase
     /**
      * @dataProvider getPopulatedFieldExamples
      *
+     * @param string $xml
+     * @param string $accessMethod
      * @param mixed $expectedValue
      *
      * @throws \Lamoda\Payture\InPayClient\Exception\InvalidResponseException

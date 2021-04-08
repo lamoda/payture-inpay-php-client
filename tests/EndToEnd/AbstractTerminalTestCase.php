@@ -37,6 +37,8 @@ abstract class AbstractTerminalTestCase extends TestCase
      * Successful payment without 3DS and with optional CVV.
      *
      * @see https://payture.com/api#test-cards_
+     *
+     * @return Card
      */
     private static function getTestCard(): Card
     {

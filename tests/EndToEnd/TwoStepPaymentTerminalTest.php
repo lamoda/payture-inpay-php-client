@@ -13,7 +13,7 @@ final class TwoStepPaymentTerminalTest extends AbstractTerminalTestCase
     private const ORDER_PRICE = 10000;
 
     /**
-     * Keep the test suite with deprecated payStatus.
+     * Keep the test suite with deprecated payStatus
      */
     public function testPaytureInPayApiWithPayStatus(): void
     {
