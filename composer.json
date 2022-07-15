@@ -26,11 +26,11 @@
     }
   },
   "require": {
-    "php": "^7.1",
+    "php": "^7.2",
     "ext-libxml": "*",
     "ext-simplexml": "*",
     "ext-mbstring": "*",
-    "guzzlehttp/guzzle": "^6.3",
+    "guzzlehttp/guzzle": "^7.0",
     "psr/log": "^1.1",
     "paillechat/php-enum": "^1.2"
   },
