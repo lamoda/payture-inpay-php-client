@@ -2,3 +2,10 @@ vendor/
 composer.lock
 
 .php_cs.cache
+
+# IDEs
+.idea
+.vscode
+
+# OS X files
+.DS_Store
