@@ -173,6 +173,42 @@ final class PaytureInPayTerminalTest extends TestCase
         self::assertEquals($orderId, $response->getOrderId());
     }
 
+    public function testGetStateWithAdditionalInfo(): void
+    {
+        $rrn = '003770024290';
+        $orderId = 'Order-123';
+        $this->transport->expects($this->once())
+            ->method('request')
+            ->with(
+                PaytureOperation::GET_STATE(),
+                'apim',
+                [
+                    'Key' => 'MerchantKey',
+                    'OrderId' => $orderId,
+                ]
+            )->willReturn('<GetState Success="True" OrderId="'.$orderId.'" State="Refunded" 
+                Forwarded="False" MerchantContract="Merchant" Amount="12464" RRN="'.$rrn.'" VWUserLgn="123@ya.ru" 
+                CardId="bd712147-48da-2ffc-ef31-8341806c65cf" PANMask="521885xxxxxx5484">
+                <AddInfo Key="PaymentSystem" Value="MasterCard" />
+                <AddInfo Key="BankHumanName" Value="SBERBANK" />
+                <AddInfo Key="BankCountryCode" Value="RU" />
+                <AddInfo Key="BankCity" Value="" />
+                </GetState>');
+
+        $response = $this->terminal->getState($orderId);
+
+        self::assertTrue($response->isSuccess());
+        self::assertTrue($response->isRefundedState());
+        self::assertEquals($rrn, $response->getRrn());
+        self::assertEquals($orderId, $response->getOrderId());
+        self::assertEquals([
+            'BankCity' => '',
+            'BankHumanName' => 'SBERBANK',
+            'PaymentSystem' => 'MasterCard',
+            'BankCountryCode' => 'RU'
+        ], $response->getAdditionalInfo());
+    }
+
     public function testCreatingPaymentUrl(): void
     {
         self::assertEquals(

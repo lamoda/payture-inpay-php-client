@@ -16,7 +16,9 @@ final class TerminalResponseBuilder
         string $transportResponse,
         PaytureOperation $operation
     ): TerminalResponse {
-        $attributes = self::parseAttributesFromXmlResponse($transportResponse, self::mapOperationToRootNode($operation));
+        $response = self::parseXmlResponse($transportResponse, self::mapOperationToRootNode($operation));
+
+        $attributes = $response['@attributes'];
 
         if (!isset($attributes['Success'])) {
             throw InvalidResponseException::becauseUndefinedSuccessAttribute();
@@ -48,13 +50,17 @@ final class TerminalResponseBuilder
             $result->setRrn($attributes['RRN']);
         }
 
+        if (isset($response['AddInfo'])) {
+            $result->setAdditionalInfo($response['AddInfo']);
+        }
+
         return $result;
     }
 
     /**
      * @throws InvalidResponseException
      */
-    private static function parseAttributesFromXmlResponse(string $xml, string $operation): array
+    private static function parseXmlResponse(string $xml, string $operation): array
     {
         $oldUseInternalXmlErrors = libxml_use_internal_errors(true);
         $rootNode = simplexml_load_string($xml);
@@ -74,7 +80,26 @@ final class TerminalResponseBuilder
             throw InvalidResponseException::becauseEmptyAttributes();
         }
 
-        return $data['@attributes'];
+        $result = [];
+        $result['@attributes'] = $data['@attributes'];
+
+        if (isset($data['AddInfo'])) {
+            $result['AddInfo'] = self::parseAddInfo($data['AddInfo']);
+        }
+
+        return $result;
+    }
+
+    private static function parseAddInfo(array $rawAddInfo): array
+    {
+        $result = [];
+
+        foreach ($rawAddInfo as $info) {
+            $infoArray = (array) $info;
+            $result[$infoArray['@attributes']['Key']] = $infoArray['@attributes']['Value'];
+        }
+
+        return $result;
     }
 
     private static function mapOperationToRootNode(PaytureOperation $operation): string
