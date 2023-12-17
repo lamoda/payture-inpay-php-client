@@ -82,6 +82,11 @@ final class TerminalResponse
     private $errorCode = '';
 
     /**
+     * @var array|null
+     */
+    private $additionalInfo;
+
+    /**
      * @param string $success Operation success flag
      * @param mixed $orderId Payment ID in Merchant system
      */
@@ -114,6 +119,11 @@ final class TerminalResponse
     public function getRrn(): ?string
     {
         return $this->rrn;
+    }
+
+    public function getAdditionalInfo(): ?array
+    {
+        return $this->additionalInfo;
     }
 
     public function getSessionId(): string
@@ -157,6 +167,11 @@ final class TerminalResponse
     public function setRrn(string $rrn): void
     {
         $this->rrn = $rrn;
+    }
+
+    public function setAdditionalInfo(array $additionalInfo): void
+    {
+        $this->additionalInfo = $additionalInfo;
     }
 
     public function isNewState(): bool
